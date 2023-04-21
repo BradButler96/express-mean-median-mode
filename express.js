@@ -1,6 +1,6 @@
 const express = require('express');
 const ExpressError = require('./errors')
-const { getMedian, numCount, getMode } = require('./functions.js')
+const { getMean, getMedian, numCount, getMode } = require('./functions.js')
 
 const app = express();
 
@@ -19,9 +19,7 @@ app.get("/mean", (req, res, next) => {
         if (nanIdx != -1) {
             throw new ExpressError(`${numStr[nanIdx]} is not a number`, 400)
         }
-
-        const rawMean = nums.reduce((a,b) => a + b, 0) / nums.length
-        const mean = Math.round((rawMean + Number.EPSILON) * 100) / 100;
+        const mean = getMean(nums)
         const output = {
             'operation': 'mean',
             'value': mean

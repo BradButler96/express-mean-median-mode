@@ -1,3 +1,8 @@
+function getMean(arr) {
+    const rawMean = arr.reduce((a,b) => a + b, 0) / arr.length
+    return Math.round((rawMean + Number.EPSILON) * 100) / 100;
+}
+
 function getMedian(arr) {
     const mid = Math.floor(arr.length / 2);
     const sorted = arr.sort((a,b) => { return a - b });
@@ -21,4 +26,4 @@ function getMode(obj) {
     })
 }
 
-module.exports = { getMedian, numCount, getMode }
+module.exports = { getMean, getMedian, numCount, getMode }
